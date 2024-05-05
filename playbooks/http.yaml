@@ -1,0 +1,15 @@
+---
+- name: install/start httpd
+  hosts: webservers
+  become: true
+  tasks:
+  - name: install httpd
+    yum:
+      name: "{{ apache_package }}"
+      state: latest
+
+  - name: start/enable
+    service:
+      name: httpd
+      state: started
+      enabled: true
